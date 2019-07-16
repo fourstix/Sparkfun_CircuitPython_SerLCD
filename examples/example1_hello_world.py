@@ -19,6 +19,8 @@
 from time import sleep
 import board
 import busio
+
+# Enable I2C communication
 from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -33,7 +35,7 @@ serlcd = Sparkfun_SerLCD_I2C(i2c)
 #cs = digitalio.DigitalInOut(board.CE0)
 #cs.direction = digitalio.Direction.OUTPUT
 #
-# serlcd = Sparkfun_SerLCD_SPI(spi, cs)
+#serlcd = Sparkfun_SerLCD_SPI(spi, cs)
 
 # Enable Serial communication
 # SerLCD is connected to the RPi via a USB to TTL 3.3v Serial Cable:
