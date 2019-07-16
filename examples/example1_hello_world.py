@@ -6,21 +6,21 @@
 #  https://www.sparkfun.com/products/14704
 
 """
- Serial LCD Simple Test - serlcd_simpletest.py
- Written by Gaston Williams, July 16, 2019
+ Serial LCD Example 1 - example1_hello_world.py
+ Written by Gaston Williams, July 14th, 2019
  Based on Arduino code written by Gaston Williams and
  Nathan Seidle @ Sparkfun, August 22, 2018.
 
 
- Simple Test:
- This program writes Hello, World! to the display.
+ Example 1 - Hello World:
+ This program writes Hello, World! to the display,
+ then displays a count on the next line.
 """
-import time
+from time import sleep
 import board
 import busio
-
-# Enable I2C (Qwiic) communication
 from sparkfun_serlcd import Sparkfun_SerLCD_I2C
+
 i2c = busio.I2C(board.SCL, board.SDA)
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
@@ -28,20 +28,20 @@ serlcd = Sparkfun_SerLCD_I2C(i2c)
 #import digitalio
 #from sparkfun_serlcd import Sparkfun_SerLCD_SPI
 #spi = busio.SPI(board.SCK, board.MOSI, board.MISO)
-
+#
 # Set up chip select, CE0 or D8 is labeled CS on Sparkfun Pi Hat
 #cs = digitalio.DigitalInOut(board.CE0)
 #cs.direction = digitalio.Direction.OUTPUT
 #
-#serlcd = Sparkfun_SerLCD_SPI(spi, cs)
+# serlcd = Sparkfun_SerLCD_SPI(spi, cs)
 
 # Enable Serial communication
 # SerLCD is connected to the RPi via a USB to TTL 3.3v Serial Cable:
 # https://www.sparkfun.com/products/12977
 # https://www.adafruit.com/product/954
+
 #import serial
 #from sparkfun_serlcd import Sparkfun_SerLCD_Serial
-#
 #usb0 = serial.Serial(
 #        port='/dev/ttyUSB0',
 #        baudrate = 9600,
@@ -52,6 +52,18 @@ serlcd = Sparkfun_SerLCD_I2C(i2c)
 #
 #serlcd = Sparkfun_SerLCD_Serial(usb0)
 
-print('SerLCD Simple Test')
+print('Example 1: Hello World')
+print('Press Ctrl-C to end program.')
 
-serlcd.write('Hello, world!')
+serlcd.write("Hello, world!")
+
+i = 0
+try:
+    while True:
+        serlcd.set_cursor(0,1)
+        serlcd.write(i)
+        i += 1
+        sleep(1)
+
+except KeyboardInterrupt:
+    pass
