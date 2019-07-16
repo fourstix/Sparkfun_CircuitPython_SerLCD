@@ -26,7 +26,7 @@ CircuitPython library for the Sparkfun SerLCD displays. This library is ported f
 
 .. image:: https://cdn.sparkfun.com/assets/parts/1/1/9/2/7/14074-SparkFun_20x4_SerLCD_-_Black_on_RGB_3.3V-01.jpg
     :target: https://www.sparkfun.com/products/14074
-    :alt:SparkFun 20x4 SerLCD - Black on RGB 3.3V (LCD-14074)
+    :alt: SparkFun 20x4 SerLCD - Black on RGB 3.3V (LCD-14074)
 
 Dependencies
 =============
