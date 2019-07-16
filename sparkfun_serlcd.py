@@ -204,6 +204,7 @@ class Sparkfun_SerLCD(ABC):
 
     def write(self, message):
         """Write a character string to the display."""
+        # Value -> String -> Bytes
         text = str(message).encode()
         self._write_bytes(text)
 
@@ -522,8 +523,9 @@ class Sparkfun_SerLCD_SPI(Sparkfun_SerLCD):
     """Driver subclass for Sparkfun Serial LCD display over SPI"""
     def __init__(self, spi, cs):
         import adafruit_bus_device.spi_device as spi_device
-        self._spi_device = spi_device.SPIDevice(spi, cs, baudrate=2000000,
-                                                polarity=0, phase=0)
+        self._spi_device = spi_device.SPIDevice(spi, cs)
+#        self._spi_device = spi_device.SPIDevice(spi, cs, baudrate=1000000,
+#                                                polarity=0, phase=0)
         super().__init__()
 
 
@@ -541,10 +543,6 @@ class Sparkfun_SerLCD_Serial(Sparkfun_SerLCD):
     def __init__(self, uart):
         self._uart = uart
         super().__init__()
-
-    # Override parent method since serialpy doesn't handle unicode strings
-#    def write(self, data):
-#        self._uart.write(data.encode())
 
     def _write_bytes(self, data):
         self._uart.write(data)
