@@ -9,11 +9,26 @@ Introduction
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
-.. image:: https://travis-ci.com/fourstix/Sparkfun_CircuitPython_SerLCD.svg?branch=master
-    :target: https://travis-ci.com/fourstix/Sparkfun_CircuitPython_SerLCD
+.. image:: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD.svg?branch=master
+    :target: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD
     :alt: Build Status
 
-CircuitPython driver library for the Sparkfun SerLCD displays
+CircuitPython library for the Sparkfun SerLCD displays. This library is ported from
+`SparkFun SerLCD Arduino Library <https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library>`_
+
+
+<table class="table table-hover table-striped table-bordered">
+  <tr align="center">
+   <td><a href="https://www.sparkfun.com/products/14072"><img src="https://cdn.sparkfun.com/assets/parts/1/1/9/2/5/14072-SparkFun_16x2_SerLCD_-_Black_on_RGB_3.3V-01.jpg"></a></td>
+   <td><a href="https://www.sparkfun.com/products/14073"><img src="https://cdn.sparkfun.com/assets/parts/1/1/9/2/6/14073-SparkFun_16x2_SerLCD_-_RGB_on_Black_3.3V-01.jpg"></a></td>
+   <td><a href="https://www.sparkfun.com/products/14074"><img src="https://cdn.sparkfun.com/assets/parts/1/1/9/2/7/14074-SparkFun_20x4_SerLCD_-_Black_on_RGB_3.3V-01.jpg"></a></td>
+  </tr>
+  <tr align="center">
+    <td><a href="https://www.sparkfun.com/products/14072">SparkFun 16x2 SerLCD - Black on RGB 3.3V (LCD-14072)</a></td>
+    <td><a href="https://www.sparkfun.com/products/14073">SparkFun 16x2 SerLCD - RGB on Black 3.3V (LCD-14073)</a></td>
+    <td><a href="https://www.sparkfun.com/products/14074">SparkFun 20x4 SerLCD - Black on RGB 3.3V (LCD-14074)</a></td>
+  </tr>
+</table>
 
 
 Dependencies
@@ -21,31 +36,73 @@ Dependencies
 This driver depends on:
 
 * `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
+* `Adafruit Bus Device <https://github.com/adafruit/Adafruit_CircuitPython_BusDevice>`_
+* `Sparkfun SerLCD Hardware <https://github.com/sparkfun/OpenLCD>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
 `the Adafruit library and driver bundle <https://github.com/adafruit/Adafruit_CircuitPython_Bundle>`_.
 
-Installing from PyPI
-=====================
-.. note:: This library is not available on PyPI yet. Install documentation is included
-   as a standard element. Stay tuned for PyPI availability!
+Raspberry Pi Setup
+------------------
+   Adafruit has an excellent tutorial on `Installing CircuitPython Libraries on Raspberry Pi
+   <https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi/>`_.
+ 
+Quick Start Summary:
 
-.. todo:: Remove the above note if PyPI version is/will be available at time of release.
-   If the library is not planned for PyPI, remove the entire 'Installing from PyPI' section.
+* Start with the latest version of Raspbian with Wifi configured.
 
-On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
-PyPI <https://pypi.org/project/adafruit-circuitpython-serlcd/>`_. To install for current user:
+* Enable SSH, I2C and SPI.
 
 .. code-block:: shell
 
-    pip3 install adafruit-circuitpython-serlcd
+    sudo raspi-config
+
+* Update your system to the latest version.
+
+.. code-block:: shell
+
+    sudo apt-get update
+    sudo apt-get upgrade
+
+* Update the python tools
+
+.. code-block:: shell
+
+    sudo pip3 install --upgrade setuptools
+
+(If pip3 is not installed, install it and rerun the command)
+
+.. code-block:: shell
+
+    sudo apt-get install python3-pip
+
+* Install the CircuitPython libraries
+
+.. code-block:: shell
+
+    pip3 install RPI.GPIO
+    pip3 install adafruit-blinka
+
+Installing from PyPI
+--------------------
+   On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
+   PyPI <https://pypi.org/project/sparkfun-circuitpython-qwiicrelay/>`_.
+
+   Installing this library will also install the dependency adafruit-circuitpython-busdevice.
+
+Installing from PyPI
+=====================
+
+.. code-block:: shell
+
+    pip3 install sparkfun-circuitpython-serlcd
 
 To install system-wide (this may be required in some cases):
 
 .. code-block:: shell
 
-    sudo pip3 install adafruit-circuitpython-serlcd
+    sudo pip3 install sparkfun-circuitpython-serlcd
 
 To install in a virtual environment in your current project:
 
@@ -58,8 +115,49 @@ To install in a virtual environment in your current project:
 
 Usage Example
 =============
+* `Sparkfun SerLCD Hookup Guide <https://learn.sparkfun.com/tutorials/avr-based-serial-enabled-lcds-hookup-guide>`_ - The Arduino examples in the Hookup Guide are available for Python with this library
+* `CircuitPython on a Raspberry Pi <https://learn.adafruit.com/circuitpython-on-raspberrypi-linux>`_ - Basic information on how to install CircuitPython on a Raspberry Pi.
 
-.. todo:: Add a quick, simple example. It and other examples should live in the examples folder and be included in docs/examples.rst.
+* Code Example:
+
+ .. code-block:: shell
+    
+    # import the CircuitPython board and busio libraries
+    import board
+    import busio
+    
+    # Enable I2C (Qwiic) communication
+    from sparkfun_serlcd import Sparkfun_SerLCD_I2C
+    i2c = busio.I2C(board.SCL, board.SDA)
+    serlcd = Sparkfun_SerLCD_I2C(i2c)
+
+    # Enable SPI communication
+    #import digitalio
+    #from sparkfun_serlcd import Sparkfun_SerLCD_SPI
+    #spi = busio.SPI(board.SCK, board.MOSI, board.MISO)
+    #
+    # Set up chip select, CE0 or D8 is labeled CS on Sparkfun Pi Hat
+    #cs = digitalio.DigitalInOut(board.CE0)
+    #cs.direction = digitalio.Direction.OUTPUT
+    #
+    #serlcd = Sparkfun_SerLCD_SPI(spi, cs)
+
+    # Enable Serial communication
+    # SerLCD is connected to the RPi via a USB to TTL 3.3v Serial Cable:
+    # https://www.sparkfun.com/products/12977
+    # https://www.adafruit.com/product/954
+    #import serial
+    #from sparkfun_serlcd import Sparkfun_SerLCD_Serial
+    #
+    #usb0 = serial.Serial(
+    #        port='/dev/ttyUSB0',
+    #        baudrate = 9600,
+    #        parity=serial.PARITY_NONE,
+    #        stopbits=serial.STOPBITS_ONE,
+    #        bytesize=serial.EIGHTBITS,
+    #        timeout=1)
+    #
+    #serlcd = Sparkfun_SerLCD_Serial(usb0)
 
 Contributing
 ============
