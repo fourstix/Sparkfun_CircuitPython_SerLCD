@@ -157,7 +157,9 @@ class Sparkfun_SerLCD(ABC):
         # pylint: disable=line-too-long
         """
         Send a command to the display.
+
         **Command cheat sheet:**
+
         * ASCII  / DEC / HEX
         * '|'    / 124 / 0x7C - Put into setting mode
         * Ctrl+c / 3 / 0x03 - Change width to 20
