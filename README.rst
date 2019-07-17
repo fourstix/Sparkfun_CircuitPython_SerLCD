@@ -2,17 +2,14 @@ Introduction
 ============
 
 .. image:: https://readthedocs.org/projects/sparkfun-circuitpython-serlcd/badge/?version=latest
-    :width 33%
     :target: https://circuitpython.readthedocs.io/projects/serlcd/en/latest/
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/discord/327254708534116352.svg
-    :width 33%
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
 .. image:: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD.svg?branch=master
-    :width 33%
     :target: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD
     :alt: Build Status
 
@@ -22,18 +19,21 @@ CircuitPython library for the Sparkfun SerLCD displays. This library is ported f
 SparkFun 16x2 SerLCD - Black on RGB 3.3V (LCD-14072)
 
 .. image:: https://cdn.sparkfun.com/assets/parts/1/1/9/2/5/14072-SparkFun_16x2_SerLCD_-_Black_on_RGB_3.3V-01.jpg
+    :width 33%
     :target: https://www.sparkfun.com/products/14072
     :alt: SparkFun 16x2 SerLCD - Black on RGB 3.3V (LCD-14072)
 
 SparkFun 16x2 SerLCD - RGB on Black 3.3V (LCD-14073)
 
 .. image:: https://cdn.sparkfun.com/assets/parts/1/1/9/2/6/14073-SparkFun_16x2_SerLCD_-_RGB_on_Black_3.3V-01.jpg 
+    :width 33%
     :target: https://www.sparkfun.com/products/14073
     :alt: SparkFun 16x2 SerLCD - RGB on Black 3.3V (LCD-14073)
 
 SparkFun 20x4 SerLCD - Black on RGB 3.3V (LCD-14074)
 
 .. image:: https://cdn.sparkfun.com/assets/parts/1/1/9/2/7/14074-SparkFun_20x4_SerLCD_-_Black_on_RGB_3.3V-01.jpg
+    :width 33%
     :target: https://www.sparkfun.com/products/14074
     :alt: SparkFun 20x4 SerLCD - Black on RGB 3.3V (LCD-14074)
 
