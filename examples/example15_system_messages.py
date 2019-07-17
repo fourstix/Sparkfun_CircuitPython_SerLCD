@@ -1,9 +1,9 @@
 #  This is example is for the SparkFun Serial LCD displays.
 #  SparkFun sells these at its website: www.sparkfun.com
 #  Do you like this library? Help support SparkFun. Buy a board!
-#  https://www.sparkfun.com/products/14702
-#  https://www.sparkfun.com/products/14703
-#  https://www.sparkfun.com/products/14704
+#  https://www.sparkfun.com/products/14072
+#  https://www.sparkfun.com/products/14073
+#  https://www.sparkfun.com/products/14074
 
 """
  Serial LCD Example 15 - example15_message_enable.py

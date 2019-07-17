@@ -44,9 +44,9 @@ Implementation Notes
 *  This is library is for the SparkFun Serial LCD displays
 *  SparkFun sells these at its website: www.sparkfun.com
 *  Do you like this library? Help support SparkFun. Buy a board!
-*  16x2 SerLCD Black on RGB https://www.sparkfun.com/products/14702
+*  16x2 SerLCD Black on RGB https://www.sparkfun.com/products/14072
 *  16x2 SerLCD RGB on Black https://www.sparkfun.com/products/14073
-*  20x4 SerLCD Black on RGB https://www.sparkfun.com/products/14704
+*  20x4 SerLCD Black on RGB https://www.sparkfun.com/products/14074
 
 **Software and Dependencies:**
 
@@ -143,7 +143,7 @@ def _map_range(value, in_min, in_max, out_min, out_max):
 class Sparkfun_SerLCD(ABC):
     """Abstract base class for Sparkfun AVR-Based Serial LCD display.
     Use the appropriate driver communcation subclass Sprarkfun_SerLCD_I2C()
-    for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_Serial for Serial.
+    for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_UART for UART.
     """
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
@@ -546,8 +546,8 @@ class Sparkfun_SerLCD_SPI(Sparkfun_SerLCD):
         # No i2c address change for SPI
         pass
 
-# concrete subclass for Serial
-class Sparkfun_SerLCD_Serial(Sparkfun_SerLCD):
+# concrete subclass for UART
+class Sparkfun_SerLCD_UART(Sparkfun_SerLCD):
     """Driver subclass for Sparkfun Serial LCD display over Serial communication"""
     def __init__(self, uart):
         self._uart = uart

@@ -1,13 +1,13 @@
 #  This is example is for the SparkFun Serial LCD displays.
 #  SparkFun sells these at its website: www.sparkfun.com
 #  Do you like this library? Help support SparkFun. Buy a board!
-#  https://www.sparkfun.com/products/14702
-#  https://www.sparkfun.com/products/14703
-#  https://www.sparkfun.com/products/14704
+#  https://www.sparkfun.com/products/14072
+#  https://www.sparkfun.com/products/14073
+#  https://www.sparkfun.com/products/14074
 
 """
  Serial LCD Example 12 - example12_show_firmware_version.py
- Written by Gaston Williams, July 14th, 2019
+ Written by Gaston Williams, July 16, 2019
  Based on Arduino code written by Gaston Williams and
  Nathan Seidle @ Sparkfun, August 22, 2018.
 
