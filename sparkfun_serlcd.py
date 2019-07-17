@@ -33,7 +33,7 @@ CircuitPython driver library for the Sparkfun Serial LCD displays
 * Based on sample code provided with the SparkFun Serial OpenLCD display.
   The original LiquidCrystal library was written by David A. Mellis and
   modified by Limor Fried @ Adafruit and the OpenLCD code was written by
-   Nathan Seidle at SparkFun.
+  Nathan Seidle @ SparkFun.
 
 
 Implementation Notes
@@ -134,9 +134,10 @@ _LCD_MOVELEFT = const(0x00)
 
 # abstract base class
 class Sparkfun_SerLCD(ABC):
-    """Abstract base class for Sparkfun AS3935 Lightning Detector.
-    Use the appropriate driver subclass Sprarkfun_QwiicAS3935_I2C() for I2C
-    or Sparkfun_QwiicAS3935_SPI() for SPI."""
+    """Abstract base class for Sparkfun AVR-Based Serial LCD display.
+    Use the appropriate driver communcation subclass Sprarkfun_SerLCD_I2C()
+    for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_Serial for Serial.
+    """
     # pylint: disable=too-many-instance-attributes
 
     def __init__(self):
@@ -146,44 +147,44 @@ class Sparkfun_SerLCD(ABC):
 
     def command(self, command):
         """Send a command to the display.
-        * Command cheat sheet:
-        * ASCII  / DEC / HEX
-        * '|'    / 124 / 0x7C - Put into setting mode
-        * Ctrl+c / 3 / 0x03 - Change width to 20
-        * Ctrl+d / 4 / 0x04 - Change width to 16
-        * Ctrl+e / 5 / 0x05 - Change lines to 4
-        * Ctrl+f / 6 / 0x06 - Change lines to 2
-        * Ctrl+g / 7 / 0x07 - Change lines to 1
-        * Ctrl+h / 8 / 0x08 - Software reset of the system
-        * Ctrl+i / 9 / 0x09 - Enable/disable splash screen
-        * Ctrl+j / 10 / 0x0A - Save currently displayed text as splash
-        * Ctrl+k / 11 / 0x0B - Change baud to 2400bps
-        * Ctrl+l / 12 / 0x0C - Change baud to 4800bps
-        * Ctrl+m / 13 / 0x0D - Change baud to 9600bps
-        * Ctrl+n / 14 / 0x0E - Change baud to 14400bps
-        * Ctrl+o / 15 / 0x0F - Change baud to 19200bps
-        * Ctrl+p / 16 / 0x10 - Change baud to 38400bps
-        * Ctrl+q / 17 / 0x11 - Change baud to 57600bps
-        * Ctrl+r / 18 / 0x12 - Change baud to 115200bps
-        * Ctrl+s / 19 / 0x13 - Change baud to 230400bps
-        * Ctrl+t / 20 / 0x14 - Change baud to 460800bps
-        * Ctrl+u / 21 / 0x15 - Change baud to 921600bps
-        * Ctrl+v / 22 / 0x16 - Change baud to 1000000bps
-        * Ctrl+w / 23 / 0x17 - Change baud to 1200bps
-        * Ctrl+x / 24 / 0x18 - Change the contrast. Follow Ctrl+x with number 0 to 255. 120 is default.
-        * Ctrl+y / 25 / 0x19 - Change the TWI address. Follow Ctrl+x with number 0 to 255. 114 (0x72) is default.
-        * Ctrl+z / 26 / 0x1A - Enable/disable ignore RX pin on startup (ignore emergency reset)
-        * '+'    / 43 / 0x2B - Set RGB backlight with three following bytes, 0-255
-        * ','    / 44 / 0x2C - Display current firmware version
-        * '-'    / 45 / 0x2D - Clear display. Move cursor to home position.
-        * '.'    / 46 / 0x2E - Enable system messages (ie, display 'Contrast: 5' when changed)
-        * '/'    / 47 / 0x2F - Disable system messages (ie, don't display 'Contrast: 5' when changed)
-        * '0'    / 48 / 0x30 - Enable splash screen
-        * '1'    / 49 / 0x31 - Disable splash screen
-        *        / 128-157 / 0x80-0x9D - Set the primary backlight brightness. 128 = Off, 157 = 100%.
-        *        / 158-187 / 0x9E-0xBB - Set the green backlight brightness. 158 = Off, 187 = 100%.
-        *        / 188-217 / 0xBC-0xD9 - Set the blue backlight brightness. 188 = Off, 217 = 100%.
-        * For example, to change the baud rate to 115200 send 124 followed by 18.
+            * Command cheat sheet:
+            * ASCII  / DEC / HEX
+            * '|'    / 124 / 0x7C - Put into setting mode
+            * Ctrl+c / 3 / 0x03 - Change width to 20
+            * Ctrl+d / 4 / 0x04 - Change width to 16
+            * Ctrl+e / 5 / 0x05 - Change lines to 4
+            * Ctrl+f / 6 / 0x06 - Change lines to 2
+            * Ctrl+g / 7 / 0x07 - Change lines to 1
+            * Ctrl+h / 8 / 0x08 - Software reset of the system
+            * Ctrl+i / 9 / 0x09 - Enable/disable splash screen
+            * Ctrl+j / 10 / 0x0A - Save currently displayed text as splash
+            * Ctrl+k / 11 / 0x0B - Change baud to 2400bps
+            * Ctrl+l / 12 / 0x0C - Change baud to 4800bps
+            * Ctrl+m / 13 / 0x0D - Change baud to 9600bps
+            *   Ctrl+n / 14 / 0x0E - Change baud to 14400bps
+            * Ctrl+o / 15 / 0x0F - Change baud to 19200bps
+            * Ctrl+p / 16 / 0x10 - Change baud to 38400bps
+            * Ctrl+q / 17 / 0x11 - Change baud to 57600bps
+            * Ctrl+r / 18 / 0x12 - Change baud to 115200bps
+            * Ctrl+s / 19 / 0x13 - Change baud to 230400bps
+            * Ctrl+t / 20 / 0x14 - Change baud to 460800bps
+            * Ctrl+u / 21 / 0x15 - Change baud to 921600bps
+            * Ctrl+v / 22 / 0x16 - Change baud to 1000000bps
+            * Ctrl+w / 23 / 0x17 - Change baud to 1200bps
+            * Ctrl+x / 24 / 0x18 - Change the contrast. Follow Ctrl+x with number 0 to 255. 120 is default.
+            * Ctrl+y / 25 / 0x19 - Change the TWI address. Follow Ctrl+x with number 0 to 255. 114 (0x72) is default.
+            * Ctrl+z / 26 / 0x1A - Enable/disable ignore RX pin on startup (ignore emergency reset)
+            * '+'    / 43 / 0x2B - Set RGB backlight with three following bytes, 0-255
+            * ','    / 44 / 0x2C - Display current firmware version
+            * '-'    / 45 / 0x2D - Clear display. Move cursor to home position.
+            * '.'    / 46 / 0x2E - Enable system messages (ie, display 'Contrast: 5' when changed)
+            * '/'    / 47 / 0x2F - Disable system messages (ie, don't display 'Contrast: 5' when changed)
+            * '0'    / 48 / 0x30 - Enable splash screen
+            * '1'    / 49 / 0x31 - Disable splash screen
+            *        / 128-157 / 0x80-0x9D - Set the primary backlight brightness. 128 = Off, 157 = 100%.
+            *        / 158-187 / 0x9E-0xBB - Set the green backlight brightness. 158 = Off, 187 = 100%.
+            *        / 188-217 / 0xBC-0xD9 - Set the blue backlight brightness. 188 = Off, 217 = 100%.
+            * For example, to change the baud rate to 115200 send 124 followed by 18.
         """
         data = bytearray()
         data.append(_SETTING_COMMAND)
@@ -502,7 +503,7 @@ class Sparkfun_SerLCD(ABC):
 
 # concrete subclass for I2C
 class Sparkfun_SerLCD_I2C(Sparkfun_SerLCD):
-    """Driver subclass for Sparkfun Serial Displays over I2C"""
+    """Driver subclass for Sparkfun Serial Displays over I2C communication"""
     def __init__(self, i2c, address=DEFAULT_I2C_ADDR):
         import adafruit_bus_device.i2c_device as i2c_device
         self._i2c_device = i2c_device.I2CDevice(i2c, address)
@@ -520,7 +521,7 @@ class Sparkfun_SerLCD_I2C(Sparkfun_SerLCD):
 
 # concrete subclass for SPI
 class Sparkfun_SerLCD_SPI(Sparkfun_SerLCD):
-    """Driver subclass for Sparkfun Serial LCD display over SPI"""
+    """Driver subclass for Sparkfun Serial LCD display over SPI communication"""
     def __init__(self, spi, cs):
         import adafruit_bus_device.spi_device as spi_device
         self._spi_device = spi_device.SPIDevice(spi, cs)
@@ -539,7 +540,7 @@ class Sparkfun_SerLCD_SPI(Sparkfun_SerLCD):
 
 # concrete subclass for Serial
 class Sparkfun_SerLCD_Serial(Sparkfun_SerLCD):
-    """Driver subclass for Sparkfun Serial LCD display over SPI"""
+    """Driver subclass for Sparkfun Serial LCD display over Serial communication"""
     def __init__(self, uart):
         self._uart = uart
         super().__init__()

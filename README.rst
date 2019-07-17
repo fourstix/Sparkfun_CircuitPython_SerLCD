@@ -2,7 +2,7 @@ Introduction
 ============
 
 .. image:: https://readthedocs.org/projects/sparkfun-circuitpython-serlcd/badge/?version=latest
-    :target: https://circuitpython.readthedocs.io/projects/sparkfun-circuitpython-serlcd/en/latest/
+    :target: https://sparkfun-circuitpython-serlcd.readthedocs.io/en/latest/
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/discord/327254708534116352.svg
