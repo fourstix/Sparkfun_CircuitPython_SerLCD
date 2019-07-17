@@ -2,14 +2,17 @@ Introduction
 ============
 
 .. image:: https://readthedocs.org/projects/sparkfun-circuitpython-serlcd/badge/?version=latest
+    :width 33%
     :target: https://circuitpython.readthedocs.io/projects/serlcd/en/latest/
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/discord/327254708534116352.svg
+    :width 33%
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
 .. image:: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD.svg?branch=master
+    :width 33%
     :target: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD
     :alt: Build Status
 
