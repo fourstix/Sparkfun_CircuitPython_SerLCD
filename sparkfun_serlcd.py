@@ -133,8 +133,7 @@ _LCD_MOVELEFT = const(0x00)
 
 # private functions
 
-# pylint: disable=too-many-instance-attributes
-def _map_range(self, value, in_min, in_max, out_min, out_max):
+def _map_range(value, in_min, in_max, out_min, out_max):
     """Map an integer value from a range into a value in another range."""
     result = (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
@@ -269,9 +268,9 @@ class Sparkfun_SerLCD(ABC):
     def set_backlight_rgb(self, red, green, blue):
         """Set the backlight with byte values for r, g, b"""
         # map the byte value range to backlight command range
-        r_value = 128 + self._map_range(red, 0, 255, 0, 29)
-        g_value = 158 + self._map_range(green, 0, 255, 0, 29)
-        b_value = 188 + self._map_range(blue, 0, 255, 0, 29)
+        r_value = 128 + _map_range(red, 0, 255, 0, 29)
+        g_value = 158 + _map_range(green, 0, 255, 0, 29)
+        b_value = 188 + _map_range(blue, 0, 255, 0, 29)
 
         # send commands to the display to set backlights
         data = bytearray()
@@ -451,7 +450,7 @@ class Sparkfun_SerLCD(ABC):
 
     def default_splash_screen(self):
         """ Result to the default splash screen"""
-        # Clear the display        
+        # Clear the display
         self.clear()
         # put the default charater
         self._put_char(_DEFAULT_SPLASH_SCREEN)

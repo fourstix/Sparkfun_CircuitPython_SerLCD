@@ -96,7 +96,7 @@ serlcd.create_character(3, arms_down)
 serlcd.create_character(4, arms_up)
 
 # Print a message to the LCD.
-serlcd.write("I ");
+serlcd.write("I ")
 # Write the heart character. We use write_character since it's a serial display.
 serlcd.write_character(0)
 serlcd.write(" SerLCD! ")
