@@ -16,19 +16,19 @@ Introduction
 CircuitPython library for the Sparkfun SerLCD displays. This library is ported from
 `SparkFun SerLCD Arduino Library <https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library>`_
 
-`SparkFun 16x2 SerLCD - Black on RGB 3.3V (LCD-14072)<https://www.sparkfun.com/products/14072>`_
+* `SparkFun 16x2 SerLCD - Black on RGB 3.3V (LCD-14072)<https://www.sparkfun.com/products/14072>`_
 
 .. image:: https://cdn.sparkfun.com/r/140-140/assets/parts/1/1/9/2/5/14072-SparkFun_16x2_SerLCD_-_Black_on_RGB_3.3V-05.jpg
     :target: https://www.sparkfun.com/products/14072
     :alt: SparkFun 16x2 SerLCD - Black on RGB 3.3V (LCD-14072)
 
-`SparkFun 16x2 SerLCD - RGB on Black 3.3V (LCD-14073)<https://www.sparkfun.com/products/14073>`_
+* `SparkFun 16x2 SerLCD - RGB on Black 3.3V (LCD-14073)<https://www.sparkfun.com/products/14073>`_
 
 .. image:: https://cdn.sparkfun.com/r/140-140/assets/parts/1/1/9/2/6/14073-SparkFun_16x2_SerLCD_-_RGB_on_Black_3.3V-05.jpg
     :target: https://www.sparkfun.com/products/14073
     :alt: SparkFun 16x2 SerLCD - RGB on Black 3.3V (LCD-14073)
 
-`SparkFun 20x4 SerLCD - Black on RGB 3.3V (LCD-14074)<https://www.sparkfun.com/products/14074>`_
+* `SparkFun 20x4 SerLCD - Black on RGB 3.3V (LCD-14074)<https://www.sparkfun.com/products/14074>`_
 
 .. image:: https://cdn.sparkfun.com/r/140-140/assets/parts/1/1/9/2/7/14074-SparkFun_20x4_SerLCD_-_Black_on_RGB_3.3V-05.jpg
     :target: https://www.sparkfun.com/products/14074
@@ -145,12 +145,12 @@ Usage Example
     #
     #serlcd = Sparkfun_SerLCD_SPI(spi, cs)
 
-    # Enable Serial communication
+    # Enable UART Serial communication
     # SerLCD is connected to the RPi via a USB to TTL 3.3v Serial Cable:
     # https://www.sparkfun.com/products/12977
     # https://www.adafruit.com/product/954
     #import serial
-    #from sparkfun_serlcd import Sparkfun_SerLCD_Serial
+    #from sparkfun_serlcd import Sparkfun_SerLCD_UART
     #
     #usb0 = serial.Serial(
     #        port='/dev/ttyUSB0',
@@ -160,7 +160,7 @@ Usage Example
     #        bytesize=serial.EIGHTBITS,
     #        timeout=1)
     #
-    #serlcd = Sparkfun_SerLCD_Serial(usb0)
+    #serlcd = Sparkfun_SerLCD_UART(usb0)
 
 Contributing
 ============
