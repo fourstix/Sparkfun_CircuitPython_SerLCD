@@ -28,8 +28,9 @@ Table of Contents
 .. toctree::
     :caption: Related Products
 
-.. todo:: Add any product links here. If there are none, then simply delete this todo and leave
-    the toctree above for use later.
+    Sparkfun 16x2 SerLCD - Black on RGB 3.3v <https://www.sparkfun.com/products/14072>
+    Sparkfun 16x2 SerLCD - RGB on Black 3.3v <https://www.sparkfun.com/products/14073>
+    Sparkfun 20x4 SerLCD - Black on RGB 3.3v <https://www.sparkfun.com/products/14074>
 
 .. toctree::
     :caption: Other Links
