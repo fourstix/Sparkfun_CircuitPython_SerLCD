@@ -17,7 +17,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='adafruit-circuitpython-serlcd',
+    name='sparkfun-circuitpython-serlcd',
 
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
@@ -27,14 +27,15 @@ setup(
     long_description_content_type='text/x-rst',
 
     # The project's main homepage.
-    url='https://github.com/adafruit/Adafruit_CircuitPython_SerLCD',
+    url='https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD',
 
     # Author details
-    author='Adafruit Industries',
-    author_email='circuitpython@adafruit.com',
+    author='Gaston Williams',
+    author_email='fourstix@gmail.com',
 
     install_requires=[
-        'Adafruit-Blinka'
+        'Adafruit-Blinka',
+        'adafruit-circuitpython-busdevice'
     ],
 
     # Choose your license
@@ -57,7 +58,5 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    # TODO: IF LIBRARY FILES ARE A PACKAGE FOLDER,
-    #       CHANGE `py_modules=['...']` TO `packages=['...']`
     py_modules=['sparkfun_serlcd'],
 )
