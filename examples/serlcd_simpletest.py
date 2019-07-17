@@ -15,7 +15,6 @@
  Simple Test:
  This program writes Hello, World! to the display.
 """
-import time
 import board
 import busio
 

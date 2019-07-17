@@ -31,55 +31,55 @@ print("Press Ctrl-C to end program.")
 
 try:
     while True:
-        serlcd.set_backlight_rgb(0, 0, 0); # black is off
+        serlcd.set_backlight_rgb(0, 0, 0) # black is off
         serlcd.clear()
         serlcd.write("Black (off)")
-        sleep(3);
+        sleep(3)
 
-        serlcd.set_backlight_rgb(255, 0, 0); #bright red
-        serlcd.clear();
-        serlcd.write("Red");
-        sleep(3);
+        serlcd.set_backlight_rgb(255, 0, 0) #bright red
+        serlcd.clear()
+        serlcd.write("Red")
+        sleep(3)
 
-        serlcd.set_backlight(0xFF8C00); #orange
-        serlcd.clear();
-        serlcd.write("Orange");
-        sleep(3);
+        serlcd.set_backlight(0xFF8C00) #orange
+        serlcd.clear()
+        serlcd.write("Orange")
+        sleep(3)
 
-        serlcd.set_backlight_rgb(255, 255, 0); #bright yellow
-        serlcd.clear();
-        serlcd.write("Yellow");
-        sleep(3);
+        serlcd.set_backlight_rgb(255, 255, 0) #bright yellow
+        serlcd.clear()
+        serlcd.write("Yellow")
+        sleep(3)
 
-        serlcd.set_backlight_rgb(0, 255, 0); #bright green
-        serlcd.clear();
-        serlcd.write("Green");
-        sleep(3);
+        serlcd.set_backlight_rgb(0, 255, 0) #bright green
+        serlcd.clear()
+        serlcd.write("Green")
+        sleep(3)
 
-        serlcd.set_backlight_rgb(0, 0, 255); #bright blue
-        serlcd.clear();
-        serlcd.write("Blue");
-        sleep(3);
+        serlcd.set_backlight_rgb(0, 0, 255) #bright blue
+        serlcd.clear()
+        serlcd.write("Blue")
+        sleep(3)
 
-        serlcd.set_backlight(0x4B0082); #indigo, a kind of dark purplish blue
-        serlcd.clear();
-        serlcd.write("Indigo");
-        sleep(3);
+        serlcd.set_backlight(0x4B0082) #indigo, a kind of dark purplish blue
+        serlcd.clear()
+        serlcd.write("Indigo")
+        sleep(3)
 
-        serlcd.set_backlight(0xA020F0); #violet
-        serlcd.clear();
-        serlcd.write("Violet");
-        sleep(3);
+        serlcd.set_backlight(0xA020F0) #violet
+        serlcd.clear()
+        serlcd.write("Violet")
+        sleep(3)
 
-        serlcd.set_backlight(0x808080); #grey
-        serlcd.clear();
-        serlcd.write("Grey");
-        sleep(3);
+        serlcd.set_backlight(0x808080) #grey
+        serlcd.clear()
+        serlcd.write("Grey")
+        sleep(3)
 
-        serlcd.set_backlight_rgb(255, 255, 255); #bright white
-        serlcd.clear();
-        serlcd.write("White");
-        sleep(3);
+        serlcd.set_backlight_rgb(255, 255, 255) #bright white
+        serlcd.clear()
+        serlcd.write("White")
+        sleep(3)
 
 except KeyboardInterrupt:
     pass

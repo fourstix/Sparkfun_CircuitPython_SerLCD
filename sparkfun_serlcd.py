@@ -131,6 +131,14 @@ _LCD_CURSORMOVE = const(0x00)
 _LCD_MOVERIGHT = const(0x04)
 _LCD_MOVELEFT = const(0x00)
 
+# private functions
+
+# pylint: disable=too-many-instance-attributes
+def _map_range(self, value, in_min, in_max, out_min, out_max):
+    """Map an integer value from a range into a value in another range."""
+    result = (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+    return int(result)
 
 # abstract base class
 class Sparkfun_SerLCD(ABC):
@@ -139,6 +147,7 @@ class Sparkfun_SerLCD(ABC):
     for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_Serial for Serial.
     """
     # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-public-methods
 
     def __init__(self):
         self._display_control = _LCD_DISPLAYON | _LCD_CURSOROFF | _LCD_BLINKOFF
@@ -146,6 +155,7 @@ class Sparkfun_SerLCD(ABC):
         self._begin()
 
     def command(self, command):
+        # pylint: disable=line-too-long
         """Send a command to the display.
             * Command cheat sheet:
             * ASCII  / DEC / HEX
@@ -210,6 +220,7 @@ class Sparkfun_SerLCD(ABC):
         self._write_bytes(text)
 
     def set_cursor(self, col, row):
+        """Set the cursor position."""
         row_offsets = [0x00, 0x40, 0x14, 0x54]
 
         # keep variables in bounds
@@ -250,9 +261,9 @@ class Sparkfun_SerLCD(ABC):
 
     def set_backlight(self, rgb):
         """Set the backlight with 24-bit RGB value."""
-        red = (rgb >> 16) & 0x0000FF;
-        green = (rgb >> 8) & 0x0000FF;
-        blue = rgb & 0x0000FF;
+        red = (rgb >> 16) & 0x0000FF
+        green = (rgb >> 8) & 0x0000FF
+        blue = rgb & 0x0000FF
         self.set_backlight_rgb(red, green, blue)
 
     def set_backlight_rgb(self, red, green, blue):
@@ -260,7 +271,7 @@ class Sparkfun_SerLCD(ABC):
         # map the byte value range to backlight command range
         r_value = 128 + self._map_range(red, 0, 255, 0, 29)
         g_value = 158 + self._map_range(green, 0, 255, 0, 29)
-        b_value = 188 + self._map_range(blue, 0, 255, 0, 29);
+        b_value = 188 + self._map_range(blue, 0, 255, 0, 29)
 
         # send commands to the display to set backlights
         data = bytearray()
@@ -344,7 +355,7 @@ class Sparkfun_SerLCD(ABC):
         """Enable or disable the printint of messages like 'UART: 57600' or 'Contrast: 5'"""
         if bool(enable):
             # Send the set '.' character
-           self.command(_ENABLE_SYSTEM_MESSAGE_DISPLAY)
+            self.command(_ENABLE_SYSTEM_MESSAGE_DISPLAY)
         else:
             # Send the set '/' character
             self.command(_DISABLE_SYSTEM_MESSAGE_DISPLAY)
@@ -361,6 +372,7 @@ class Sparkfun_SerLCD(ABC):
         sleep(0.010)
 
     def set_contrast(self, value):
+        """Set the display contrast."""
         data = bytearray()
         data.append(_SETTING_COMMAND)
         data.append(_CONTRAST_COMMAND)
@@ -368,7 +380,7 @@ class Sparkfun_SerLCD(ABC):
         self._write_bytes(data)
         sleep(0.010)
 
-    def set_i2c_address(new_address):
+    def set_i2c_address(self, new_address):
         """Change the I2C Address. 0x72 is the default.
         Note that this change is persistent.  If anything goes wrong
         you may need to do a hardware reset to unbrick the display.
@@ -382,7 +394,7 @@ class Sparkfun_SerLCD(ABC):
         data.append(_SETTING_COMMAND)
         data.append(_ADDRESS_COMMAND) # 0x19
         data.append(new_address)
-        self._write_bytes(new_address)
+        self._write_bytes(data)
         # Update our own address so we can still talk to the display
         self._change_i2c_address(new_address)
 
@@ -422,12 +434,12 @@ class Sparkfun_SerLCD(ABC):
         """Set the text to flow from left to right.  This is the direction
         that is common to most Western languages."""
         self._display_mode |= _LCD_ENTRYLEFT
-        self._special_command(_LCD_ENTRYMODESET | self._display_mode);
+        self._special_command(_LCD_ENTRYMODESET | self._display_mode)
 
     def right_to_left(self):
         """Set the text to flow from right to left."""
         self._display_mode &= ~_LCD_ENTRYLEFT
-        self._special_command(_LCD_ENTRYMODESET | self._display_mode);
+        self._special_command(_LCD_ENTRYMODESET | self._display_mode)
 
     def show_version(self):
         """Show the firmware version on the display."""
@@ -481,18 +493,13 @@ class Sparkfun_SerLCD(ABC):
         """Send a special command to the display.  Used by other functions."""
         data = bytearray()
         data.append(_SPECIAL_COMMAND)
-        for i in range(count):
-             data.append(command & 0xFF)
+        for _ in range(count):
+            data.append(command & 0xFF)
         self._write_bytes(data)
 
         # Wait a bit longer for special display commands
         sleep(0.050)
 
-    def _map_range(self, value, in_min, in_max, out_min, out_max):
-        """Map an integer value from a range into a value in another range."""
-        result = (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-
-        return int(result)
 
     def _put_char(self, char):
         """Send a character byte directly to display, no encoding"""
@@ -525,13 +532,12 @@ class Sparkfun_SerLCD_SPI(Sparkfun_SerLCD):
     def __init__(self, spi, cs):
         import adafruit_bus_device.spi_device as spi_device
         self._spi_device = spi_device.SPIDevice(spi, cs)
-#        self._spi_device = spi_device.SPIDevice(spi, cs, baudrate=1000000,
-#                                                polarity=0, phase=0)
         super().__init__()
 
 
     def _write_bytes(self, data):
         with self._spi_device as device:
+            #pylint: disable=no-member
             device.write(data)
 
     def _change_i2c_address(self, addr):

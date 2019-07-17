@@ -19,7 +19,6 @@
  to the original default splash screen, display a single character 0xFF,
  and save that as the splash screen.
 """
-from time import sleep
 import board
 import busio
 from sparkfun_serlcd import Sparkfun_SerLCD_I2C

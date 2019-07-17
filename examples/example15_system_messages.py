@@ -16,7 +16,7 @@
  This program turns the system messages off and on. These messages are shown
  when the user changes a setting. For instance 'Contrast: 5' or 'UART: 57600'
  is no longer displayed when system messages are turned off.  This example
- and the system_messages(True) and system_messages(False) methods are only 
+ and the system_messages(True) and system_messages(False) methods are only
  supported on SerLCD v1.2 and above.
 
 
