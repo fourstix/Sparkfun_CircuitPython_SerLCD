@@ -60,12 +60,12 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD.git"
 
 # imports
-from abc import ABC, abstractmethod
+// from abc import ABC, abstractmethod  // Please no abstractmethods, CircuitPython is not Python 3 
 from time import sleep
 from micropython import const
 
 # public constants
-DEFAULT_I2C_ADDR = const(0x72)
+# DEFAULT_I2C_ADDR = const(0x72)
 """Default I2C address for SerLCD"""
 
 
@@ -139,8 +139,8 @@ def _map_range(value, in_min, in_max, out_min, out_max):
 
     return int(result)
 
-# abstract base class
-class Sparkfun_SerLCD(ABC):
+# base class
+class Sparkfun_SerLCD:
     """Abstract base class for Sparkfun AVR-Based Serial LCD display.
     Use the appropriate driver communcation subclass Sprarkfun_SerLCD_I2C()
     for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_UART for UART.
@@ -381,27 +381,6 @@ class Sparkfun_SerLCD(ABC):
         data.append(value & 0x00FF)
         self._write_bytes(data)
         sleep(0.010)
-
-    def set_i2c_address(self, new_address):
-        """Change the I2C Address. 0x72 is the default.
-        Note that this change is persistent.  If anything goes wrong
-        you may need to do a hardware reset to unbrick the display.
-
-        byte new_addr - new i2c address"""
-        # Mask new address to byte
-        new_address &= 0x00FF
-        # Transmit to device on old address
-        data = bytearray()
-        # Send contrast command
-        data.append(_SETTING_COMMAND)
-        data.append(_ADDRESS_COMMAND) # 0x19
-        data.append(new_address)
-        self._write_bytes(data)
-        # Update our own address so we can still talk to the display
-        self._change_i2c_address(new_address)
-
-        # This may take awhile
-        sleep(0.050)
 
     def scroll_display_left(self, count=1):
         """Scroll the display to the left"""
