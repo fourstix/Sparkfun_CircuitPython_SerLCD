@@ -60,12 +60,12 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD.git"
 
 # imports
-// from abc import ABC, abstractmethod  // Please no abstractmethods, CircuitPython is not Python 3 
+# from abc import ABC, abstractmethod  // Please no abstractmethods, CircuitPython is not Python 3 
 from time import sleep
 from micropython import const
 
 # public constants
-# DEFAULT_I2C_ADDR = const(0x72)
+DEFAULT_I2C_ADDR = const(0x72)
 """Default I2C address for SerLCD"""
 
 
@@ -442,11 +442,11 @@ class Sparkfun_SerLCD:
 
     # abstract methods
 
-    @abstractmethod
+    # @abstractmethod
     def _write_bytes(self, data):
         pass
 
-    @abstractmethod
+    # @abstractmethod
     def _change_i2c_address(self, addr):
         pass
 

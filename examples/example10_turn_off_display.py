@@ -19,10 +19,9 @@
 """
 from time import sleep
 import board
-import busio
 from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
 
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
 print('Example 10: Turn Off Display')
