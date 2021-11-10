@@ -60,7 +60,7 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD.git"
 
 # imports
-# from abc import ABC, abstractmethod  // Please no abstractmethods, CircuitPython is not Python 3 
+from abc import ABC, abstractmethod
 from time import sleep
 from micropython import const
 
@@ -139,8 +139,8 @@ def _map_range(value, in_min, in_max, out_min, out_max):
 
     return int(result)
 
-# base class
-class Sparkfun_SerLCD:
+# abstract base class
+class Sparkfun_SerLCD(ABC):
     """Abstract base class for Sparkfun AVR-Based Serial LCD display.
     Use the appropriate driver communcation subclass Sprarkfun_SerLCD_I2C()
     for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_UART for UART.
@@ -382,6 +382,27 @@ class Sparkfun_SerLCD:
         self._write_bytes(data)
         sleep(0.010)
 
+    def set_i2c_address(self, new_address):
+        """Change the I2C Address. 0x72 is the default.
+        Note that this change is persistent.  If anything goes wrong
+        you may need to do a hardware reset to unbrick the display.
+
+        byte new_addr - new i2c address"""
+        # Mask new address to byte
+        new_address &= 0x00FF
+        # Transmit to device on old address
+        data = bytearray()
+        # Send contrast command
+        data.append(_SETTING_COMMAND)
+        data.append(_ADDRESS_COMMAND) # 0x19
+        data.append(new_address)
+        self._write_bytes(data)
+        # Update our own address so we can still talk to the display
+        self._change_i2c_address(new_address)
+
+        # This may take awhile
+        sleep(0.050)
+
     def scroll_display_left(self, count=1):
         """Scroll the display to the left"""
         self._special_command(_LCD_CURSORSHIFT | _LCD_DISPLAYMOVE | _LCD_MOVELEFT, count)
@@ -442,11 +463,11 @@ class Sparkfun_SerLCD:
 
     # abstract methods
 
-    # @abstractmethod
+    @abstractmethod
     def _write_bytes(self, data):
         pass
 
-    # @abstractmethod
+    @abstractmethod
     def _change_i2c_address(self, addr):
         pass
 
