@@ -60,7 +60,6 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD.git"
 
 # imports
-from abc import ABC, abstractmethod
 from time import sleep
 from micropython import const
 
@@ -140,9 +139,9 @@ def _map_range(value, in_min, in_max, out_min, out_max):
     return int(result)
 
 # abstract base class
-class Sparkfun_SerLCD(ABC):
+class Sparkfun_SerLCD:
     """Abstract base class for Sparkfun AVR-Based Serial LCD display.
-    Use the appropriate driver communcation subclass Sprarkfun_SerLCD_I2C()
+    Use the appropriate driver communcation subclass Sparkfun_SerLCD_I2C()
     for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_UART for UART.
     """
     # pylint: disable=too-many-instance-attributes
@@ -463,11 +462,9 @@ class Sparkfun_SerLCD(ABC):
 
     # abstract methods
 
-    @abstractmethod
     def _write_bytes(self, data):
         pass
 
-    @abstractmethod
     def _change_i2c_address(self, addr):
         pass
 
