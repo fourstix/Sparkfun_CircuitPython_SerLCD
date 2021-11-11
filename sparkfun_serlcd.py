@@ -463,7 +463,7 @@ class Sparkfun_SerLCD:
         self.command(_RESET_COMMAND)
 
     def default_splash_screen(self):
-        """ Result to the default splash screen"""
+        """Result to the default splash screen"""
         # Clear the display
         self.clear()
         # put the default charater

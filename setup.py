@@ -11,6 +11,7 @@ https://github.com/pypa/sampleproject
 """
 
 from setuptools import setup, find_packages
+
 # To use a consistent encoding
 from codecs import open
 from os import path
@@ -23,34 +24,26 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 
 setup(
     name="sparkfun-circuitpython-serlcd",
-
     use_scm_version={
         # This is needed for the PyPI version munging in the Github Actions release.yml
         "git_describe_command": "git describe --tags --long",
         "local_scheme": "no-local-version",
     },
-
     setup_requires=["setuptools_scm"],
-
     description="CircuitPython driver library for the Sparkfun SerLCD displays",
     long_description=long_description,
     long_description_content_type="text/x-rst",
-
     # The project's main homepage.
     url="https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD.git",
-
     # Author details
     author="Gaston Williams",
     author_email="fourstix@gmail.com",
-
     install_requires=[
         "Adafruit-Blinka",
         "adafruit-circuitpython-busdevice",
     ],
-
     # Choose your license
     license="MIT",
-
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -62,10 +55,8 @@ setup(
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
     ],
-
     # What does your project relate to?
     keywords="adafruit blinka circuitpython micropython serlcd sparkfun serial lcd display",
-
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     py_modules=["sparkfun_serlcd"],
