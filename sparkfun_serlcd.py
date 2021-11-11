@@ -516,7 +516,8 @@ class Sparkfun_SerLCD:
 class Sparkfun_SerLCD_I2C(Sparkfun_SerLCD):
     """Driver subclass for Sparkfun Serial Displays over I2C communication"""
     def __init__(self, i2c, address=DEFAULT_I2C_ADDR):
-        import adafruit_bus_device.i2c_device as i2c_device
+        #pylint: disable=import-outside-toplevel
+	import adafruit_bus_device.i2c_device as i2c_device
         self._i2c_device = i2c_device.I2CDevice(i2c, address)
         self._i2c = i2c
         super().__init__()
@@ -527,6 +528,7 @@ class Sparkfun_SerLCD_I2C(Sparkfun_SerLCD):
             device.write(data)
 
     def _change_i2c_address(self, addr):
+        #pylint: disable=import-outside-toplevel
         import adafruit_bus_device.i2c_device as i2c_device
         self._i2c_device = i2c_device.I2CDevice(self._i2c, addr)
 
@@ -534,6 +536,7 @@ class Sparkfun_SerLCD_I2C(Sparkfun_SerLCD):
 class Sparkfun_SerLCD_SPI(Sparkfun_SerLCD):
     """Driver subclass for Sparkfun Serial LCD display over SPI communication"""
     def __init__(self, spi, cs):
+        #pylint: disable=import-outside-toplevel
         import adafruit_bus_device.spi_device as spi_device
         self._spi_device = spi_device.SPIDevice(spi, cs)
         super().__init__()
