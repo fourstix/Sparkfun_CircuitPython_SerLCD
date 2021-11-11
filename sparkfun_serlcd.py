@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2017 Scott Shawcroft, written for Adafruit Industries
+# SPDX-FileCopyrightText: Copyright (c) 2021 Gaston Williams
+#
+# SPDX-License-Identifier: MIT
 # The MIT License (MIT)
 #
 # Copyright (c) 2019 Gaston Williams
@@ -56,6 +60,7 @@ Implementation Notes
 * Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 """
 
+# imports__version__ = "0.0.0-auto.0"
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD.git"
 
