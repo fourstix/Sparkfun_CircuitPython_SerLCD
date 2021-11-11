@@ -2,16 +2,23 @@ Introduction
 ============
 
 .. image:: https://readthedocs.org/projects/sparkfun-circuitpython-serlcd/badge/?version=latest
-    :target: https://sparkfun-circuitpython-serlcd.readthedocs.io/en/latest/
+    :target: https://circuitpython.readthedocs.io/projects/serlcd/en/latest/
     :alt: Documentation Status
+
 
 .. image:: https://img.shields.io/discord/327254708534116352.svg
     :target: https://adafru.it/discord
     :alt: Discord
 
-.. image:: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD.svg?branch=master
-    :target: https://travis-ci.org/fourstix/Sparkfun_CircuitPython_SerLCD
+
+.. image:: https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD/workflows/Build%20CI/badge.svg
+    :target: https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD/actions
     :alt: Build Status
+
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+    :alt: Code Style: Black
 
 CircuitPython library for the Sparkfun SerLCD displays. This library is ported from
 `SparkFun SerLCD Arduino Library <https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library>`_
@@ -44,13 +51,16 @@ This driver depends on:
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
-`the Adafruit library and driver bundle <https://github.com/adafruit/Adafruit_CircuitPython_Bundle>`_.
+`the Adafruit library and driver bundle <https://circuitpython.org/libraries>`_
+or individual libraries can be installed using
+`circup <https://github.com/adafruit/circup>`_.
 
 Raspberry Pi Setup
 ------------------
    Adafruit has an excellent tutorial on `Installing CircuitPython Libraries on Raspberry Pi
    <https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi/>`_.
- 
+   `You can purchase one from the Adafruit shop <http://www.adafruit.com/products/>`_
+
 Quick Start Summary:
 
 * Start with the latest version of Raspbian with Wifi configured.
@@ -88,14 +98,13 @@ Quick Start Summary:
     pip3 install adafruit-blinka
 
 Installing from PyPI
---------------------
-   On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
-   PyPI <https://pypi.org/project/sparkfun-circuitpython-qwiicrelay/>`_.
-
-   Installing this library will also install the dependency adafruit-circuitpython-busdevice.
-
-Installing from PyPI
 =====================
+
+On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
+PyPI <https://pypi.org/project/sparkfun-circuitpython-serlcd/>`_.
+Installing this library will also install the dependency adafruit-circuitpython-busdevice.
+
+To install for current user:
 
 .. code-block:: shell
 
@@ -114,7 +123,32 @@ To install in a virtual environment in your current project:
     mkdir project-name && cd project-name
     python3 -m venv .env
     source .env/bin/activate
-    pip3 install adafruit-circuitpython-serlcd
+    pip3 install sparkfun-circuitpython-serlcd
+
+
+Installing to a Connected CircuitPython Device with Circup
+==========================================================
+
+Make sure that you have ``circup`` installed in your Python environment.
+Install it with the following command if necessary:
+
+.. code-block:: shell
+
+    pip3 install circup
+
+With ``circup`` installed and your CircuitPython device connected use the
+following command to install:
+
+.. code-block:: shell
+
+    circup install serlcd
+
+Or the following command to update an existing version:
+
+.. code-block:: shell
+
+    circup update
+
 
 Usage Example
 =============
@@ -127,11 +161,10 @@ Usage Example
     
     # import the CircuitPython board and busio libraries
     import board
-    import busio
     
     # Enable I2C (Qwiic) communication
     from sparkfun_serlcd import Sparkfun_SerLCD_I2C
-    i2c = busio.I2C(board.SCL, board.SDA)
+    i2c = board.I2C()
     serlcd = Sparkfun_SerLCD_I2C(i2c)
 
     # Enable SPI communication
@@ -166,8 +199,14 @@ Contributing
 ============
 
 Contributions are welcome! Please read our `Code of Conduct
-<https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD/blob/master/CODE_OF_CONDUCT.md>`_
+<https://github.com/fourstix/Sparkfun_CircuitPython_SerLCD/blob/HEAD/CODE_OF_CONDUCT.md>`_
 before contributing to help this project stay welcoming.
+
+Documentation
+=============
+
+For information on building library documentation, please check out
+`this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
 
 Building locally
 ================
