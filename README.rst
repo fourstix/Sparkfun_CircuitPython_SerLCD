@@ -158,10 +158,10 @@ Usage Example
 * Code Example:
 
  .. code-block:: shell
-    
+
     # import the CircuitPython board and busio libraries
     import board
-    
+
     # Enable I2C (Qwiic) communication
     from sparkfun_serlcd import Sparkfun_SerLCD_I2C
     i2c = board.I2C()
