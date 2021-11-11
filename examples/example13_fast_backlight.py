@@ -23,62 +23,62 @@
 """
 from time import sleep
 import board
-from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
+from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 13: Fast Backlight')
-print('Press Ctrl-C to end program.')
+print("Example 13: Fast Backlight")
+print("Press Ctrl-C to end program.")
 
 try:
     while True:
-        serlcd.set_fast_backlight_rgb(0, 0, 0) # black is off
+        serlcd.set_fast_backlight_rgb(0, 0, 0)  # black is off
         serlcd.clear()
         serlcd.write("Black (off)")
         sleep(3)
 
-        serlcd.set_fast_backlight_rgb(255, 0, 0) #bright red
+        serlcd.set_fast_backlight_rgb(255, 0, 0)  # bright red
         serlcd.clear()
         serlcd.write("Red")
         sleep(3)
 
-        serlcd.set_fast_backlight(0xFF8C00) #orange
+        serlcd.set_fast_backlight(0xFF8C00)  # orange
         serlcd.clear()
         serlcd.write("Orange")
         sleep(3)
 
-        serlcd.set_fast_backlight_rgb(255, 255, 0) #bright yellow
+        serlcd.set_fast_backlight_rgb(255, 255, 0)  # bright yellow
         serlcd.clear()
         serlcd.write("Yellow")
         sleep(3)
 
-        serlcd.set_fast_backlight_rgb(0, 255, 0) #bright green
+        serlcd.set_fast_backlight_rgb(0, 255, 0)  # bright green
         serlcd.clear()
         serlcd.write("Green")
         sleep(3)
 
-        serlcd.set_fast_backlight_rgb(0, 0, 255) #bright blue
+        serlcd.set_fast_backlight_rgb(0, 0, 255)  # bright blue
         serlcd.clear()
         serlcd.write("Blue")
         sleep(3)
 
-        serlcd.set_fast_backlight(0x4B0082) #indigo, a kind of dark purplish blue
+        serlcd.set_fast_backlight(0x4B0082)  # indigo, a kind of dark purplish blue
         serlcd.clear()
         serlcd.write("Indigo")
         sleep(3)
 
-        serlcd.set_fast_backlight(0xA020F0) #violet
+        serlcd.set_fast_backlight(0xA020F0)  # violet
         serlcd.clear()
         serlcd.write("Violet")
         sleep(3)
 
-        serlcd.set_fast_backlight(0x808080) #grey
+        serlcd.set_fast_backlight(0x808080)  # grey
         serlcd.clear()
         serlcd.write("Grey")
         sleep(3)
 
-        serlcd.set_fast_backlight_rgb(255, 255, 255) #bright white
+        serlcd.set_fast_backlight_rgb(255, 255, 255)  # bright white
         serlcd.clear()
         serlcd.write("White")
         sleep(3)

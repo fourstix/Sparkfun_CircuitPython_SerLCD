@@ -27,64 +27,24 @@
 """
 from time import sleep
 import board
-from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
+from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
 # Define some custom characters as 8 x 5 bitmap arrays
-heart = [
-    0b00000,
-    0b01010,
-    0b11111,
-    0b11111,
-    0b11111,
-    0b01110,
-    0b00100,
-    0b00000]
+heart = [0b00000, 0b01010, 0b11111, 0b11111, 0b11111, 0b01110, 0b00100, 0b00000]
 
-smiley = [
-    0b00000,
-    0b00000,
-    0b01010,
-    0b00000,
-    0b00000,
-    0b10001,
-    0b01110,
-    0b00000]
+smiley = [0b00000, 0b00000, 0b01010, 0b00000, 0b00000, 0b10001, 0b01110, 0b00000]
 
-frownie = [
-    0b00000,
-    0b00000,
-    0b01010,
-    0b00000,
-    0b00000,
-    0b00000,
-    0b01110,
-    0b10001]
+frownie = [0b00000, 0b00000, 0b01010, 0b00000, 0b00000, 0b00000, 0b01110, 0b10001]
 
-arms_down = [
-    0b00100,
-    0b01010,
-    0b00100,
-    0b00100,
-    0b01110,
-    0b10101,
-    0b00100,
-    0b01010]
+arms_down = [0b00100, 0b01010, 0b00100, 0b00100, 0b01110, 0b10101, 0b00100, 0b01010]
 
-arms_up = [
-    0b00100,
-    0b01010,
-    0b00100,
-    0b10101,
-    0b01110,
-    0b00100,
-    0b00100,
-    0b01010]
+arms_up = [0b00100, 0b01010, 0b00100, 0b10101, 0b01110, 0b00100, 0b00100, 0b01010]
 
-print('Example 9: Custom Character')
-print('Press Ctrl-C to end program.')
+print("Example 9: Custom Character")
+print("Press Ctrl-C to end program.")
 
 # Clear the display
 serlcd.clear()
@@ -109,12 +69,12 @@ serlcd.write_character(1)
 
 try:
     while True:
-        serlcd.set_cursor(4, 1) # column, row
-        serlcd.write_character(3) # Print the little man, arms down
+        serlcd.set_cursor(4, 1)  # column, row
+        serlcd.write_character(3)  # Print the little man, arms down
         sleep(0.200)
 
-        serlcd.set_cursor(4, 1) # column, row
-        serlcd.write_character(4) # Print the little man, arms up
+        serlcd.set_cursor(4, 1)  # column, row
+        serlcd.write_character(4)  # Print the little man, arms up
         sleep(0.200)
 
 except KeyboardInterrupt:
