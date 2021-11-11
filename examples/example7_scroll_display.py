@@ -23,20 +23,20 @@
 """
 from time import sleep
 import board
-from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
+from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 7: Scroll Display')
-print('Press Ctrl-C to end program.')
+print("Example 7: Scroll Display")
+print("Press Ctrl-C to end program.")
 
 # Clear the display before writing text
 
 try:
     while True:
         serlcd.clear()
-        serlcd.write('Hello, World!')
+        serlcd.write("Hello, World!")
         sleep(1)
 
         # Scroll 13 positions (string length) to the left to move offscreen

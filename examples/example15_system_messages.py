@@ -33,7 +33,7 @@ from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Press Ctrl-C to end program.')
+print("Press Ctrl-C to end program.")
 
 
 try:
@@ -46,7 +46,7 @@ try:
         serlcd.command(187)
         serlcd.command(217)
         serlcd.write("Messages on")
-        serlcd.set_cursor(0,1)
+        serlcd.set_cursor(0, 1)
         serlcd.write("White")
         sleep(3)
 
@@ -57,7 +57,7 @@ try:
         serlcd.command(162)
         serlcd.command(202)
         serlcd.write("Messages off")
-        serlcd.set_cursor(0,1)
+        serlcd.set_cursor(0, 1)
         serlcd.write("Purple")
         sleep(2)
 

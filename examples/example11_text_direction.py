@@ -23,20 +23,20 @@
 """
 from time import sleep
 import board
-from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
+from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 11: Text Direction')
-print('Press Ctrl-C to end program.')
+print("Example 11: Text Direction")
+print("Press Ctrl-C to end program.")
 
 serlcd.write("Hello, world!")
 
-letter_a = ord('a')
-letter_j = ord('j')
-letter_q = ord('q')
-letter_z = ord('z')
+letter_a = ord("a")
+letter_j = ord("j")
+letter_q = ord("q")
+letter_z = ord("z")
 
 # Start with letter 'a'
 letter = letter_a
@@ -64,7 +64,7 @@ try:
             sleep(0.5)
 
         serlcd.write(chr(letter))
-        sleep(1) # wait a second
+        sleep(1)  # wait a second
         letter += 1
 
 except KeyboardInterrupt:

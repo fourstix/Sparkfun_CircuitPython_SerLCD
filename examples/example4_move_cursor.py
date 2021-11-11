@@ -22,13 +22,13 @@
 """
 from time import sleep
 import board
-from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
+from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 4: Move Cursor')
-print('Press Ctrl-C to end program.')
+print("Example 4: Move Cursor")
+print("Press Ctrl-C to end program.")
 
 # Clear the display before writing random letters
 serlcd.clear()
@@ -37,7 +37,7 @@ serlcd.cursor(True)
 try:
     while True:
         serlcd.clear()
-        serlcd.write('Watch cursor!  ')
+        serlcd.write("Watch cursor!  ")
         serlcd.move_cursor_left()
         sleep(0.5)
         serlcd.move_cursor_left()

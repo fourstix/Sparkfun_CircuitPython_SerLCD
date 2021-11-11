@@ -27,8 +27,8 @@ from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 12: Show Firmware Version')
-print('Press Ctrl-C to end program.')
+print("Example 12: Show Firmware Version")
+print("Press Ctrl-C to end program.")
 
 serlcd.clear()
 

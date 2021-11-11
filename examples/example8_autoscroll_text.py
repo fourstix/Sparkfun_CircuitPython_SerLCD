@@ -23,13 +23,13 @@
 """
 from time import sleep
 import board
-from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
+from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 8: Autoscroll Text')
-print('Press Ctrl-C to end program.')
+print("Example 8: Autoscroll Text")
+print("Press Ctrl-C to end program.")
 
 # Clear the display before writing text
 
@@ -42,14 +42,13 @@ try:
             serlcd.write(str(i))
             sleep(0.5)
 
-
         # Set display to automatically scroll:
         serlcd.autoscroll(True)
 
         # Print from 0 to 9:
         for i in range(10):
             # Set cursor to end of string as we add letters
-            serlcd.set_cursor(10+i, 0)
+            serlcd.set_cursor(10 + i, 0)
             serlcd.write(str(i))
             sleep(0.5)
 

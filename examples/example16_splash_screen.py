@@ -30,7 +30,7 @@ from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 16: Splash Screen')
+print("Example 16: Splash Screen")
 
 # Set backlight to bright white
 serlcd.set_backlight_rgb(255, 255, 255)
@@ -47,12 +47,12 @@ serlcd.write("Fozziwig's Chicken Factory!")
 serlcd.save_splash_screen()
 
 # Uncomment this line to set splash screen back to default
-#serlcd.default_splash_screen()
+# serlcd.default_splash_screen()
 
 # This will cause the splash to be displayed at power on
 serlcd.splash_screen(True)
 
 # Uncomment the next line to supress any splash display at power on
-#serlcd.splash_screen(False)
+# serlcd.splash_screen(False)
 
-print('Power off dislpay. Then Power back on to see Splash Screen changes.')
+print("Power off dislpay. Then Power back on to see Splash Screen changes.")

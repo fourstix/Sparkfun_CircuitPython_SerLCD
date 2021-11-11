@@ -31,24 +31,24 @@ i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
 # Enable SPI communication
-#import digitalio
-#from sparkfun_serlcd import Sparkfun_SerLCD_SPI
-#spi = busio.SPI(board.SCK, board.MOSI, board.MISO)
+# import digitalio
+# from sparkfun_serlcd import Sparkfun_SerLCD_SPI
+# spi = busio.SPI(board.SCK, board.MOSI, board.MISO)
 #
 # Set up chip select, CE0 or D8 is labeled CS on Sparkfun Pi Hat
-#cs = digitalio.DigitalInOut(board.CE0)
-#cs.direction = digitalio.Direction.OUTPUT
+# cs = digitalio.DigitalInOut(board.CE0)
+# cs.direction = digitalio.Direction.OUTPUT
 #
-#serlcd = Sparkfun_SerLCD_SPI(spi, cs)
+# serlcd = Sparkfun_SerLCD_SPI(spi, cs)
 
 # Enable UART Serial communication
 # SerLCD is connected to the RPi via a USB to TTL 3.3v Serial Cable:
 # https://www.sparkfun.com/products/12977
 # https://www.adafruit.com/product/954
 
-#import serial
-#from sparkfun_serlcd import Sparkfun_SerLCD_UART
-#usb0 = serial.Serial(
+# import serial
+# from sparkfun_serlcd import Sparkfun_SerLCD_UART
+# usb0 = serial.Serial(
 #        port='/dev/ttyUSB0',
 #        baudrate = 9600,
 #        parity=serial.PARITY_NONE,
@@ -56,17 +56,17 @@ serlcd = Sparkfun_SerLCD_I2C(i2c)
 #        bytesize=serial.EIGHTBITS,
 #        timeout=1)
 #
-#serlcd = Sparkfun_SerLCD_UART(usb0)
+# serlcd = Sparkfun_SerLCD_UART(usb0)
 
-print('Example 1: Hello World')
-print('Press Ctrl-C to end program.')
+print("Example 1: Hello World")
+print("Press Ctrl-C to end program.")
 
 serlcd.write("Hello, world!")
 
 i = 0
 try:
     while True:
-        serlcd.set_cursor(0,1)
+        serlcd.set_cursor(0, 1)
         serlcd.write(i)
         i += 1
         sleep(1)

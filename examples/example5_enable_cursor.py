@@ -23,17 +23,17 @@
 """
 from time import sleep
 import board
-from sparkfun_serlcd  import Sparkfun_SerLCD_I2C
+from sparkfun_serlcd import Sparkfun_SerLCD_I2C
 
 i2c = board.I2C()
 serlcd = Sparkfun_SerLCD_I2C(i2c)
 
-print('Example 5: Enable Cursor')
-print('Press Ctrl-C to end program.')
+print("Example 5: Enable Cursor")
+print("Press Ctrl-C to end program.")
 
 # Clear the display before writing text
 serlcd.clear()
-serlcd.write('Hello, World!')
+serlcd.write("Hello, World!")
 
 try:
     while True:
