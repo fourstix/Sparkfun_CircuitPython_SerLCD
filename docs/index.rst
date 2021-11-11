@@ -23,7 +23,7 @@ Table of Contents
 .. toctree::
     :caption: Tutorials
 
-    Sparkfun AVR-Based Serial Enabled LCDs Hookup Guide <https://learn.sparkfun.com/tutorials/avr-based-serial-enabled-lcds-hookup-guide/all> 
+    Sparkfun AVR-Based Serial Enabled LCDs Hookup Guide <https://learn.sparkfun.com/tutorials/avr-based-serial-enabled-lcds-hookup-guide/all>
 
 .. toctree::
     :caption: Related Products
