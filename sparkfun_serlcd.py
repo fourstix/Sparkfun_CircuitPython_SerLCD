@@ -137,11 +137,13 @@ _LCD_MOVELEFT = const(0x00)
 
 # private functions
 
+
 def _map_range(value, in_min, in_max, out_min, out_max):
     """Map an integer value from a range into a value in another range."""
     result = (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
     return int(result)
+
 
 # abstract base class
 class Sparkfun_SerLCD:
@@ -149,6 +151,7 @@ class Sparkfun_SerLCD:
     Use the appropriate driver communcation subclass Sparkfun_SerLCD_I2C()
     for I2C, Sparkfun_SerLCD_SPI() for SPI or Sparkfun_SerLCD_UART for UART.
     """
+
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
 
@@ -209,7 +212,6 @@ class Sparkfun_SerLCD:
 
         # Wait a bit longer for special display commands
         sleep(0.010)
-
 
     def clear(self):
         """Clear the display"""
@@ -338,7 +340,6 @@ class Sparkfun_SerLCD:
             self._display_control &= ~_LCD_DISPLAYON
             self._special_command(_LCD_DISPLAYCONTROL | self._display_control)
 
-
     def cursor(self, value):
         """Turn the underline cursor on and off."""
         if bool(value):
@@ -398,7 +399,7 @@ class Sparkfun_SerLCD:
         data = bytearray()
         # Send contrast command
         data.append(_SETTING_COMMAND)
-        data.append(_ADDRESS_COMMAND) # 0x19
+        data.append(_ADDRESS_COMMAND)  # 0x19
         data.append(new_address)
         self._write_bytes(data)
         # Update our own address so we can still talk to the display
@@ -409,11 +410,15 @@ class Sparkfun_SerLCD:
 
     def scroll_display_left(self, count=1):
         """Scroll the display to the left"""
-        self._special_command(_LCD_CURSORSHIFT | _LCD_DISPLAYMOVE | _LCD_MOVELEFT, count)
+        self._special_command(
+            _LCD_CURSORSHIFT | _LCD_DISPLAYMOVE | _LCD_MOVELEFT, count
+        )
 
     def scroll_display_right(self, count=1):
         """Scroll the display to the right"""
-        self._special_command(_LCD_CURSORSHIFT | _LCD_DISPLAYMOVE | _LCD_MOVERIGHT, count)
+        self._special_command(
+            _LCD_CURSORSHIFT | _LCD_DISPLAYMOVE | _LCD_MOVERIGHT, count
+        )
 
     def move_cursor_left(self, count=1):
         """Move the cursor to the left"""
@@ -421,7 +426,9 @@ class Sparkfun_SerLCD:
 
     def move_cursor_right(self, count=1):
         """Scroll the display to the right"""
-        self._special_command(_LCD_CURSORSHIFT | _LCD_CURSORMOVE | _LCD_MOVERIGHT, count)
+        self._special_command(
+            _LCD_CURSORSHIFT | _LCD_CURSORMOVE | _LCD_MOVERIGHT, count
+        )
 
     def splash_screen(self, enable):
         """Enable or disable the splash screem."""
@@ -504,7 +511,6 @@ class Sparkfun_SerLCD:
         # Wait a bit longer for special display commands
         sleep(0.050)
 
-
     def _put_char(self, char):
         """Send a character byte directly to display, no encoding"""
         data = bytearray()
@@ -515,45 +521,51 @@ class Sparkfun_SerLCD:
 # concrete subclass for I2C
 class Sparkfun_SerLCD_I2C(Sparkfun_SerLCD):
     """Driver subclass for Sparkfun Serial Displays over I2C communication"""
+
     def __init__(self, i2c, address=DEFAULT_I2C_ADDR):
-        #pylint: disable=import-outside-toplevel
-	import adafruit_bus_device.i2c_device as i2c_device
+        # pylint: disable=import-outside-toplevel
+        import adafruit_bus_device.i2c_device as i2c_device
+
         self._i2c_device = i2c_device.I2CDevice(i2c, address)
         self._i2c = i2c
         super().__init__()
-
 
     def _write_bytes(self, data):
         with self._i2c_device as device:
             device.write(data)
 
     def _change_i2c_address(self, addr):
-        #pylint: disable=import-outside-toplevel
+        # pylint: disable=import-outside-toplevel
         import adafruit_bus_device.i2c_device as i2c_device
+
         self._i2c_device = i2c_device.I2CDevice(self._i2c, addr)
+
 
 # concrete subclass for SPI
 class Sparkfun_SerLCD_SPI(Sparkfun_SerLCD):
     """Driver subclass for Sparkfun Serial LCD display over SPI communication"""
+
     def __init__(self, spi, cs):
-        #pylint: disable=import-outside-toplevel
+        # pylint: disable=import-outside-toplevel
         import adafruit_bus_device.spi_device as spi_device
+
         self._spi_device = spi_device.SPIDevice(spi, cs)
         super().__init__()
 
-
     def _write_bytes(self, data):
         with self._spi_device as device:
-            #pylint: disable=no-member
+            # pylint: disable=no-member
             device.write(data)
 
     def _change_i2c_address(self, addr):
         # No i2c address change for SPI
         pass
 
+
 # concrete subclass for UART
 class Sparkfun_SerLCD_UART(Sparkfun_SerLCD):
     """Driver subclass for Sparkfun Serial LCD display over Serial communication"""
+
     def __init__(self, uart):
         self._uart = uart
         super().__init__()
